@@ -195,13 +195,23 @@ function App() {
                   <div className="w-32 h-32 mx-auto mb-8 relative">
                     <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1">
                       <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
-                        {avatarData?.avatarUrl ? (
+                        {/* Loading State */}
+                        {avatarLoading && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#151719]/80 rounded-full z-10">
+                            <div className="w-8 h-8 border-2 border-[#7d8181] border-t-transparent rounded-full animate-spin"></div>
+                          </div>
+                        )}
+                        
+                        {/* Avatar Image */}
+                        {avatarData?.avatarUrl && !avatarLoading && (
                           <img 
                             src={avatarData.avatarUrl} 
                             alt="Discord Avatar"
                             className="w-full h-full object-cover rounded-full"
+                            onLoad={() => console.log('Avatar loaded successfully')}
                             onError={(e) => {
-                              // Fallback to crown icon if image fails to load
+                              console.error('Avatar failed to load:', e);
+                              // Hide the image and show crown fallback
                               e.currentTarget.style.display = 'none';
                               const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
                               if (crownElement) {
@@ -209,20 +219,19 @@ function App() {
                               }
                             }}
                           />
-                        ) : null}
-                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl ? 'hidden' : ''}`} />
-                        {avatarLoading && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-[#151719]/80 rounded-full">
-                            <div className="w-8 h-8 border-2 border-[#7d8181] border-t-transparent rounded-full animate-spin"></div>
-                          </div>
                         )}
+                        
+                        {/* Crown Fallback */}
+                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl && !avatarLoading ? 'hidden' : ''}`} />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
                       <div className="w-3 h-3 bg-[#151719] rounded-full"></div>
                     </div>
+                    
+                    {/* Debug Info */}
                     {avatarError && (
-                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-red-400 whitespace-nowrap">
+                      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-xs text-red-400 whitespace-nowrap">
                         Discord avatar unavailable
                       </div>
                     )}
@@ -234,11 +243,20 @@ function App() {
                   <p className="text-xl lg:text-2xl text-[#7d8181] mb-6">
                     Full-Stack Developer & Digital Creator
                   </p>
-                  {avatarData && (
-                    <p className="text-sm text-[#a9afb2] mb-4">
-                      Discord: {avatarData.username}#{avatarData.discriminator}
-                    </p>
+                  
+                  {/* Discord Info */}
+                  {avatarData && !avatarLoading && (
+                    <div className="text-sm text-[#a9afb2] mb-4 flex items-center justify-center space-x-2">
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Discord: {avatarData.username}#{avatarData.discriminator}</span>
+                    </div>
                   )}
+                  
+                  {/* Debug Info */}
+                  <div className="text-xs text-[#7d8181] mb-4">
+                    Avatar Status: {avatarLoading ? 'Loading...' : avatarData ? 'Loaded' : 'Not loaded'}
+                    {avatarData && <span> | URL: {avatarData.avatarUrl}</span>}
+                  </div>
                 </div>
 
                 {/* Personal Info */}
