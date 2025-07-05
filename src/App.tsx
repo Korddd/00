@@ -7,8 +7,8 @@ function App() {
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
   
-  // Discord User ID - Replace with your actual Discord User ID
-  const DISCORD_USER_ID = "YOUR_DISCORD_USER_ID_HERE";
+  // Discord User ID - Updated with your actual Discord User ID
+  const DISCORD_USER_ID = "394912002843344898";
   const { avatarData, loading: avatarLoading, error: avatarError } = useDiscordAvatar(DISCORD_USER_ID);
 
   useEffect(() => {
@@ -194,7 +194,7 @@ function App() {
                 <div className="mb-8">
                   <div className="w-32 h-32 mx-auto mb-8 relative">
                     <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1">
-                      <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden">
+                      <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
                         {avatarData?.avatarUrl ? (
                           <img 
                             src={avatarData.avatarUrl} 
@@ -203,11 +203,14 @@ function App() {
                             onError={(e) => {
                               // Fallback to crown icon if image fails to load
                               e.currentTarget.style.display = 'none';
-                              e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                              const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
+                              if (crownElement) {
+                                crownElement.classList.remove('hidden');
+                              }
                             }}
                           />
                         ) : null}
-                        <Crown className={`h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl ? 'hidden' : ''}`} />
+                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl ? 'hidden' : ''}`} />
                         {avatarLoading && (
                           <div className="absolute inset-0 flex items-center justify-center bg-[#151719]/80 rounded-full">
                             <div className="w-8 h-8 border-2 border-[#7d8181] border-t-transparent rounded-full animate-spin"></div>
