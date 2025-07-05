@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Github, MessageCircle, Instagram, Crown, User, Mail, ExternalLink, Code, Database, Cpu, MapPin, Calendar } from 'lucide-react';
+import { useDiscordAvatar } from './hooks/useDiscordAvatar';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
+  
+  // Discord User ID - Replace with your actual Discord User ID
+  const DISCORD_USER_ID = "YOUR_DISCORD_USER_ID_HERE";
+  const { avatarData, loading: avatarLoading, error: avatarError } = useDiscordAvatar(DISCORD_USER_ID);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -189,13 +194,35 @@ function App() {
                 <div className="mb-8">
                   <div className="w-32 h-32 mx-auto mb-8 relative">
                     <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1">
-                      <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center">
-                        <Crown className="h-16 w-16 text-[#a9afb2]" />
+                      <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden">
+                        {avatarData?.avatarUrl ? (
+                          <img 
+                            src={avatarData.avatarUrl} 
+                            alt="Discord Avatar"
+                            className="w-full h-full object-cover rounded-full"
+                            onError={(e) => {
+                              // Fallback to crown icon if image fails to load
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                          />
+                        ) : null}
+                        <Crown className={`h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl ? 'hidden' : ''}`} />
+                        {avatarLoading && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#151719]/80 rounded-full">
+                            <div className="w-8 h-8 border-2 border-[#7d8181] border-t-transparent rounded-full animate-spin"></div>
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
                       <div className="w-3 h-3 bg-[#151719] rounded-full"></div>
                     </div>
+                    {avatarError && (
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-red-400 whitespace-nowrap">
+                        Discord avatar unavailable
+                      </div>
+                    )}
                   </div>
                   
                   <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] via-[#d0d4d7] to-[#a9afb2] mb-4 drop-shadow-2xl">
@@ -204,6 +231,11 @@ function App() {
                   <p className="text-xl lg:text-2xl text-[#7d8181] mb-6">
                     Full-Stack Developer & Digital Creator
                   </p>
+                  {avatarData && (
+                    <p className="text-sm text-[#a9afb2] mb-4">
+                      Discord: {avatarData.username}#{avatarData.discriminator}
+                    </p>
+                  )}
                 </div>
 
                 {/* Personal Info */}
