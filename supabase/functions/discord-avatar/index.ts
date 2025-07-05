@@ -36,65 +36,55 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Fetch user data from Discord API
-    const discordResponse = await fetch(`https://discord.com/api/v10/users/${userId}`, {
-      headers: {
-        'Authorization': `Bot ${Deno.env.get('DISCORD_BOT_TOKEN')}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!discordResponse.ok) {
-      // If bot token fails, try public endpoint (limited info)
-      const publicResponse = await fetch(`https://discord.com/api/v10/users/${userId}`);
-      
-      if (!publicResponse.ok) {
-        return new Response(
-          JSON.stringify({ error: 'Failed to fetch Discord user data' }),
-          {
-            status: 404,
-            headers: {
-              'Content-Type': 'application/json',
-              ...corsHeaders,
-            },
-          }
-        );
-      }
-
-      const userData: DiscordUser = await publicResponse.json();
-      
-      // Generate avatar URL
-      const avatarUrl = userData.avatar 
-        ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256`
-        : `https://cdn.discordapp.com/embed/avatars/${parseInt(userData.discriminator) % 5}.png`;
-
-      return new Response(
-        JSON.stringify({
-          avatarUrl,
-          username: userData.username,
-          discriminator: userData.discriminator,
-        }),
-        {
+    const botToken = Deno.env.get('DISCORD_BOT_TOKEN');
+    
+    // Try with bot token first if available
+    if (botToken) {
+      try {
+        const discordResponse = await fetch(`https://discord.com/api/v10/users/${userId}`, {
           headers: {
+            'Authorization': `Bot ${botToken}`,
             'Content-Type': 'application/json',
-            ...corsHeaders,
           },
+        });
+
+        if (discordResponse.ok) {
+          const userData: DiscordUser = await discordResponse.json();
+          
+          // Generate avatar URL
+          const avatarUrl = userData.avatar 
+            ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256`
+            : `https://cdn.discordapp.com/embed/avatars/${parseInt(userData.discriminator) % 5}.png`;
+
+          return new Response(
+            JSON.stringify({
+              avatarUrl,
+              username: userData.username,
+              discriminator: userData.discriminator,
+            }),
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                ...corsHeaders,
+              },
+            }
+          );
         }
-      );
+      } catch (error) {
+        console.warn('Bot token request failed, falling back to public endpoint:', error);
+      }
     }
 
-    const userData: DiscordUser = await discordResponse.json();
-    
-    // Generate avatar URL
-    const avatarUrl = userData.avatar 
-      ? `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=256`
-      : `https://cdn.discordapp.com/embed/avatars/${parseInt(userData.discriminator) % 5}.png`;
+    // Fallback: Generate default avatar without API call
+    // Discord's default avatar system uses user ID modulo 5 for default avatars
+    const defaultAvatarIndex = parseInt(userId) % 5;
+    const defaultAvatarUrl = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png`;
 
     return new Response(
       JSON.stringify({
-        avatarUrl,
-        username: userData.username,
-        discriminator: userData.discriminator,
+        avatarUrl: defaultAvatarUrl,
+        username: `User ${userId}`,
+        discriminator: '0000',
       }),
       {
         headers: {
@@ -105,10 +95,14 @@ Deno.serve(async (req: Request) => {
     );
 
   } catch (error) {
-    console.error('Error fetching Discord avatar:', error);
+    console.error('Error in discord-avatar function:', error);
     
+    // Always return JSON, never let HTML error pages through
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ 
+        error: 'Failed to fetch Discord avatar',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      }),
       {
         status: 500,
         headers: {
