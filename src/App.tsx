@@ -37,7 +37,7 @@ function App() {
     { 
       name: 'Github', 
       icon: Github, 
-      url: 'https://github.com/lordx679', 
+      url: 'https://github.com/Lordx679', 
       color: 'hover:text-[#a9afb2]',
       description: 'Check out my code repositories',
       followers: '1.2K+'
@@ -53,7 +53,7 @@ function App() {
     { 
       name: 'Instagram', 
       icon: Instagram, 
-      url: '#', 
+      url: 'https://www.instagram.com/lordx679', 
       color: 'hover:text-[#a9afb2]',
       description: 'Follow my creative journey',
       followers: '850+'
