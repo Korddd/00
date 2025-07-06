@@ -5,17 +5,10 @@ function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeSection, setActiveSection] = useState('welcome');
   const [showWelcome, setShowWelcome] = useState(true);
+  const [avatarError, setAvatarError] = useState(false);
   
-  // Discord User ID - Updated with your actual Discord User ID
-  const DISCORD_USER_ID = "394912002843344898";
-  
-  // Simple avatar URL generation - no API calls needed
-  const getAvatarUrl = (userId: string) => {
-    const defaultAvatarIndex = parseInt(userId) % 5;
-    return `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png`;
-  };
-
-  const avatarUrl = getAvatarUrl(DISCORD_USER_ID);
+  // Using a reliable avatar image from Pexels
+  const avatarUrl = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&dpr=1";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -202,22 +195,24 @@ function App() {
                     <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1 animate-pulse">
                       <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
                         {/* Avatar Image */}
-                        <img 
-                          src={avatarUrl} 
-                          alt="Profile Avatar"
-                          className="w-full h-full object-cover rounded-full"
-                          onError={(e) => {
-                            console.log('Avatar failed to load, showing crown fallback');
-                            e.currentTarget.style.display = 'none';
-                            const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
-                            if (crownElement) {
-                              crownElement.classList.remove('hidden');
-                            }
-                          }}
-                        />
-                        
-                        {/* Crown Fallback */}
-                        <Crown className="crown-fallback h-16 w-16 text-[#a9afb2] hidden" />
+                        {!avatarError ? (
+                          <img 
+                            src={avatarUrl} 
+                            alt="Profile Avatar"
+                            className="w-full h-full object-cover rounded-full"
+                            onLoad={() => {
+                              console.log('Avatar loaded successfully');
+                              setAvatarError(false);
+                            }}
+                            onError={(e) => {
+                              console.log('Avatar failed to load, showing crown fallback');
+                              setAvatarError(true);
+                            }}
+                          />
+                        ) : (
+                          /* Crown Fallback */
+                          <Crown className="h-16 w-16 text-[#a9afb2]" />
+                        )}
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
