@@ -7,8 +7,8 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [avatarError, setAvatarError] = useState(false);
   
-  // Using a reliable avatar image from Pexels
-  const avatarUrl = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&dpr=1";
+  // Using the uploaded avatar image
+  const avatarUrl = "/e9c4e804b0c546262bd2bc03f593648d.jpg";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -198,7 +198,7 @@ function App() {
                         {!avatarError ? (
                           <img 
                             src={avatarUrl} 
-                            alt="Profile Avatar"
+                            alt="LORDX679 Profile Avatar"
                             className="w-full h-full object-cover rounded-full"
                             onLoad={() => {
                               console.log('Avatar loaded successfully');
