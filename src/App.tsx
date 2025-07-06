@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Github, MessageCircle, Instagram, Crown, User, Mail, ExternalLink, Code, Database, Cpu, MapPin, Calendar } from 'lucide-react';
-import { useDiscordAvatar } from './hooks/useDiscordAvatar';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -9,7 +8,14 @@ function App() {
   
   // Discord User ID - Updated with your actual Discord User ID
   const DISCORD_USER_ID = "394912002843344898";
-  const { avatarData, loading: avatarLoading, error: avatarError } = useDiscordAvatar(DISCORD_USER_ID);
+  
+  // Simple avatar URL generation - no API calls needed
+  const getAvatarUrl = (userId: string) => {
+    const defaultAvatarIndex = parseInt(userId) % 5;
+    return `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png`;
+  };
+
+  const avatarUrl = getAvatarUrl(DISCORD_USER_ID);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -195,33 +201,23 @@ function App() {
                   <div className="w-32 h-32 mx-auto mb-8 relative">
                     <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1 animate-pulse">
                       <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
-                        {/* Loading State */}
-                        {avatarLoading && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-[#151719]/80 rounded-full z-10">
-                            <div className="w-8 h-8 border-2 border-[#7d8181] border-t-transparent rounded-full animate-spin"></div>
-                          </div>
-                        )}
-                        
                         {/* Avatar Image */}
-                        {avatarData?.avatarUrl && !avatarLoading && (
-                          <img 
-                            src={avatarData.avatarUrl} 
-                            alt="Profile Avatar"
-                            className="w-full h-full object-cover rounded-full transition-opacity duration-300"
-                            onLoad={() => console.log('Avatar loaded successfully')}
-                            onError={(e) => {
-                              console.error('Avatar failed to load, showing crown fallback');
-                              e.currentTarget.style.display = 'none';
-                              const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
-                              if (crownElement) {
-                                crownElement.classList.remove('hidden');
-                              }
-                            }}
-                          />
-                        )}
+                        <img 
+                          src={avatarUrl} 
+                          alt="Profile Avatar"
+                          className="w-full h-full object-cover rounded-full"
+                          onError={(e) => {
+                            console.log('Avatar failed to load, showing crown fallback');
+                            e.currentTarget.style.display = 'none';
+                            const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
+                            if (crownElement) {
+                              crownElement.classList.remove('hidden');
+                            }
+                          }}
+                        />
                         
-                        {/* Crown Fallback - Always show if no avatar or loading */}
-                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] transition-opacity duration-300 ${avatarData?.avatarUrl && !avatarLoading ? 'hidden' : ''}`} />
+                        {/* Crown Fallback */}
+                        <Crown className="crown-fallback h-16 w-16 text-[#a9afb2] hidden" />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
@@ -237,12 +233,10 @@ function App() {
                   </p>
                   
                   {/* Discord Info */}
-                  {avatarData && !avatarLoading && (
-                    <div className="text-sm text-[#a9afb2] mb-4 flex items-center justify-center space-x-2">
-                      <MessageCircle className="h-4 w-4" />
-                      <span>Discord: {avatarData.username}#{avatarData.discriminator}</span>
-                    </div>
-                  )}
+                  <div className="text-sm text-[#a9afb2] mb-4 flex items-center justify-center space-x-2">
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Discord: LORDX679#0000</span>
+                  </div>
                 </div>
 
                 {/* Personal Info */}
