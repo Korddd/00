@@ -193,7 +193,7 @@ function App() {
               <div className="text-center mb-16">
                 <div className="mb-8">
                   <div className="w-32 h-32 mx-auto mb-8 relative">
-                    <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1">
+                    <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1 animate-pulse">
                       <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
                         {/* Loading State */}
                         {avatarLoading && (
@@ -206,12 +206,11 @@ function App() {
                         {avatarData?.avatarUrl && !avatarLoading && (
                           <img 
                             src={avatarData.avatarUrl} 
-                            alt="Discord Avatar"
-                            className="w-full h-full object-cover rounded-full"
+                            alt="Profile Avatar"
+                            className="w-full h-full object-cover rounded-full transition-opacity duration-300"
                             onLoad={() => console.log('Avatar loaded successfully')}
                             onError={(e) => {
-                              console.error('Avatar failed to load:', e);
-                              // Hide the image and show crown fallback
+                              console.error('Avatar failed to load, showing crown fallback');
                               e.currentTarget.style.display = 'none';
                               const crownElement = e.currentTarget.parentElement?.querySelector('.crown-fallback');
                               if (crownElement) {
@@ -221,20 +220,13 @@ function App() {
                           />
                         )}
                         
-                        {/* Crown Fallback */}
-                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] ${avatarData?.avatarUrl && !avatarLoading ? 'hidden' : ''}`} />
+                        {/* Crown Fallback - Always show if no avatar or loading */}
+                        <Crown className={`crown-fallback h-16 w-16 text-[#a9afb2] transition-opacity duration-300 ${avatarData?.avatarUrl && !avatarLoading ? 'hidden' : ''}`} />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
                       <div className="w-3 h-3 bg-[#151719] rounded-full"></div>
                     </div>
-                    
-                    {/* Debug Info */}
-                    {avatarError && (
-                      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-xs text-red-400 whitespace-nowrap">
-                        Discord avatar unavailable
-                      </div>
-                    )}
                   </div>
                   
                   <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] via-[#d0d4d7] to-[#a9afb2] mb-4 drop-shadow-2xl">
@@ -251,12 +243,6 @@ function App() {
                       <span>Discord: {avatarData.username}#{avatarData.discriminator}</span>
                     </div>
                   )}
-                  
-                  {/* Debug Info */}
-                  <div className="text-xs text-[#7d8181] mb-4">
-                    Avatar Status: {avatarLoading ? 'Loading...' : avatarData ? 'Loaded' : 'Not loaded'}
-                    {avatarData && <span> | URL: {avatarData.avatarUrl}</span>}
-                  </div>
                 </div>
 
                 {/* Personal Info */}
