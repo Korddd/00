@@ -57,12 +57,6 @@ function App() {
     }
   ];
 
-  const workingHours = [
-    { day: 'Monday - Friday', hours: '9:00 AM - 6:00 PM CET', available: true },
-    { day: 'Saturday', hours: '10:00 AM - 4:00 PM CET', available: true },
-    { day: 'Sunday', hours: 'Emergency only', available: false }
-  ];
-
   const skills = [
     { 
       category: 'Frontend Development', 
@@ -383,25 +377,7 @@ function App() {
               </div>
 
               {/* Main Content Grid */}
-              <div className="grid lg:grid-cols-2 gap-12">
-                {/* Working Hours */}
-                <div className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 shadow-2xl">
-                  <div className="flex items-center mb-4">
-                    <Clock className="h-6 w-6 text-[#7d8181] mr-3" />
-                    <h3 className="text-xl font-bold text-[#a9afb2]">Working Hours</h3>
-                  </div>
-                  <div className="space-y-3">
-                    {workingHours.map((schedule, index) => (
-                      <div key={index} className="flex items-center justify-between">
-                        <span className="text-[#d0d4d7] text-sm">{schedule.day}</span>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-[#7d8181] text-sm">{schedule.hours}</span>
-                          <div className={`w-2 h-2 rounded-full ${schedule.available ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="max-w-4xl mx-auto">
 
                 {/* Social Media Links */}
                 <div className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 shadow-2xl">
@@ -431,32 +407,6 @@ function App() {
                         </div>
                       </a>
                     ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="mt-12 bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 shadow-2xl max-w-4xl mx-auto">
-                <div className="flex items-center mb-4 justify-center">
-                  <Star className="h-6 w-6 text-[#7d8181] mr-3" />
-                  <h3 className="text-xl font-bold text-[#a9afb2]">Quick Stats</h3>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#a9afb2] mb-1">24h</div>
-                    <div className="text-[#7d8181] text-xs">Response Time</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#a9afb2] mb-1">50+</div>
-                    <div className="text-[#7d8181] text-xs">Projects Done</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#a9afb2] mb-1">100%</div>
-                    <div className="text-[#7d8181] text-xs">Client Satisfaction</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#a9afb2] mb-1">3+</div>
-                    <div className="text-[#7d8181] text-xs">Years Experience</div>
                   </div>
                 </div>
               </div>
