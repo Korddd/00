@@ -29,14 +29,6 @@ function App() {
 
   const socialLinks = [
     { 
-      name: 'Github', 
-      icon: Github, 
-      url: 'https://github.com/Lordx679', 
-      color: 'hover:text-[#a9afb2]',
-      description: 'Check out my code repositories',
-      followers: '1.2K+'
-    },
-    { 
       name: 'Discord', 
       icon: MessageCircle, 
       url: '#', 
@@ -55,14 +47,6 @@ function App() {
   ];
 
   const contactMethods = [
-    {
-      icon: Github,
-      title: 'GitHub',
-      value: 'github.com/Lordx679',
-      description: 'Check out my repositories',
-      color: 'from-[#7d8181] to-[#a9afb2]',
-      url: 'https://github.com/Lordx679'
-    },
     {
       icon: Instagram,
       title: 'Instagram',
@@ -300,14 +284,6 @@ function App() {
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 text-[#7d8181] mr-3" />
                           <span><strong>Age:</strong> 18 years old</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Code className="h-4 w-4 text-[#7d8181] mr-3" />
-                          <span><strong>Role:</strong> Full-Stack Developer</span>
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 text-[#7d8181] mr-3" />
-                          <span><strong>Location:</strong> Morocco → Italy</span>
                         </div>
                       </div>
                     </div>
