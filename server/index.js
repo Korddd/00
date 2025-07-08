@@ -10,17 +10,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection (placeholder - update with your connection string)
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/lordx679';
-let db;
-
-MongoClient.connect(MONGODB_URI)
-  .then(client => {
-    console.log('Connected to MongoDB');
-    db = client.db();
-  })
-  .catch(error => console.error('MongoDB connection error:', error));
-
 // Basic route
 app.get('/', (req, res) => {
   res.json({ message: 'LORDX679 Backend Server is running!' });
@@ -31,6 +20,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
