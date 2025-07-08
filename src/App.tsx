@@ -32,7 +32,7 @@ function App() {
       name: 'Discord', 
       icon: MessageCircle, 
       url: '#', 
-      color: 'hover:text-[#a9afb2]',
+      color: 'hover:text-[#D3D3D3]',
       description: 'Connect with me on Discord',
       followers: 'LORDX679#0000'
     },
@@ -40,7 +40,7 @@ function App() {
       name: 'Instagram', 
       icon: Instagram, 
       url: 'https://www.instagram.com/lordx679', 
-      color: 'hover:text-[#a9afb2]',
+      color: 'hover:text-[#D3D3D3]',
       description: 'Follow my creative journey',
       followers: '850+'
     },
@@ -52,7 +52,7 @@ function App() {
       title: 'Instagram',
       value: '@lordx679',
       description: 'Follow my creative journey',
-      color: 'from-[#a9afb2] to-[#d0d4d7]',
+      color: 'from-[#A9A9A9] to-[#F0F0F0]',
       url: 'https://www.instagram.com/lordx679'
     }
   ];
@@ -62,19 +62,19 @@ function App() {
       category: 'Frontend Development', 
       items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'JavaScript'], 
       icon: Code, 
-      color: 'from-[#3f4b48] to-[#7d8181]' 
+      color: 'from-[#505050] to-[#A9A9A9]' 
     },
     { 
       category: 'Backend Development', 
       items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Express.js'], 
       icon: Database, 
-      color: 'from-[#7d8181] to-[#a9afb2]' 
+      color: 'from-[#A9A9A9] to-[#D3D3D3]' 
     },
     { 
       category: 'Tools & Technologies', 
       items: ['Git', 'Docker', 'AWS', 'Figma', 'VS Code'], 
       icon: Cpu, 
-      color: 'from-[#a9afb2] to-[#d0d4d7]' 
+      color: 'from-[#D3D3D3] to-[#F0F0F0]' 
     },
   ];
 
@@ -169,25 +169,25 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#151719] text-white relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Epic Background */}
       <div className="fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#151719] via-[#3f4b48] to-[#151719]"></div>
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#7d8181]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#a9afb2]/5 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#d0d4d7]/20 rounded-full blur-xl animate-bounce"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#505050] to-black"></div>
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#A9A9A9]/5 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/4 left-1/2 w-32 h-32 bg-[#D3D3D3]/20 rounded-full blur-xl animate-bounce"></div>
       </div>
 
       {/* Legendary Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#151719]/90 backdrop-blur-md border-b border-[#3f4b48]">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#505050]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-lg flex items-center justify-center relative">
-                <Crown className="h-6 w-6 text-[#151719]" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#a9afb2] rounded-full animate-ping"></div>
+              <div className="w-10 h-10 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-lg flex items-center justify-center relative">
+                <Crown className="h-6 w-6 text-black" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#A9A9A9] rounded-full animate-ping"></div>
               </div>
-              <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] to-[#d0d4d7]">LORDX679</span>
+              <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#D3D3D3]">LORDX679</span>
             </div>
             <div className="flex items-center space-x-8">
               {['about', 'connect'].map((section) => (
@@ -196,13 +196,13 @@ function App() {
                   onClick={() => setActiveSection(section)}
                   className={`text-sm font-bold transition-all duration-300 capitalize relative ${
                     activeSection === section 
-                      ? 'text-[#a9afb2] border-b-2 border-[#7d8181]' 
-                      : 'text-[#7d8181] hover:text-[#a9afb2]'
+                      ? 'text-[#A9A9A9] border-b-2 border-[#505050]' 
+                      : 'text-[#505050] hover:text-[#A9A9A9]'
                   }`}
                 >
                   {section}
                   {activeSection === section && (
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#7d8181] rounded-full animate-ping"></div>
+                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#505050] rounded-full animate-ping"></div>
                   )}
                 </button>
               ))}
@@ -220,8 +220,8 @@ function App() {
               <div className="text-center mb-16">
                 <div className="mb-8">
                   <div className="w-32 h-32 mx-auto mb-8 relative">
-                    <div className="w-full h-full bg-gradient-to-r from-[#7d8181] via-[#a9afb2] to-[#d0d4d7] rounded-full p-1 animate-pulse">
-                      <div className="w-full h-full bg-[#151719] rounded-full flex items-center justify-center overflow-hidden relative">
+                    <div className="w-full h-full bg-gradient-to-r from-[#505050] via-[#A9A9A9] to-[#D3D3D3] rounded-full p-1 animate-pulse">
+                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden relative">
                         {/* Avatar Image */}
                         {!avatarError ? (
                           <img 
@@ -239,59 +239,60 @@ function App() {
                           />
                         ) : (
                           /* Crown Fallback */
-                          <Crown className="h-16 w-16 text-[#a9afb2]" />
+                          <Crown className="h-16 w-16 text-[#A9A9A9]" />
                         )}
                       </div>
                     </div>
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#7d8181] to-[#a9afb2] rounded-full flex items-center justify-center animate-pulse">
-                      <div className="w-3 h-3 bg-[#151719] rounded-full"></div>
+                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-[#505050] to-[#A9A9A9] rounded-full flex items-center justify-center animate-pulse">
+                      <div className="w-3 h-3 bg-black rounded-full"></div>
                     </div>
                   </div>
                   
                   <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] via-[#d0d4d7] to-[#a9afb2] mb-4 drop-shadow-2xl">
-                    I'm <span className="text-[#a9afb2]">LORD</span>
+                  <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] via-[#F0F0F0] to-[#A9A9A9] mb-4 drop-shadow-2xl">
+                    I'm <span className="text-[#D3D3D3]">LORD</span>
                   </h1>
-                  <p className="text-xl lg:text-2xl text-[#7d8181] mb-6">
+                  <p className="text-xl lg:text-2xl text-[#A9A9A9] mb-6">
                     Full-Stack Developer & Digital Creator
                   </p>
                   
                   {/* Discord Info */}
-                  <div className="text-sm text-[#a9afb2] mb-4 flex items-center justify-center space-x-2">
+                  <div className="text-sm text-[#D3D3D3] mb-4 flex items-center justify-center space-x-2">
                     <MessageCircle className="h-4 w-4" />
                     <span>Discord: LORDX679#0000</span>
                   </div>
                 </div>
 
                 {/* Personal Info */}
-                <div className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-8 mb-8 shadow-2xl">
+                <div className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-8 mb-8 shadow-2xl">
                   <div className="grid md:grid-cols-2 gap-8 text-left">
                     <div>
-                      <h3 className="text-2xl font-bold text-[#a9afb2] mb-4 flex items-center">
+                      <h3 className="text-2xl font-bold text-[#D3D3D3] mb-4 flex items-center">
                         <User className="h-6 w-6 mr-3" />
                         About Me
                       </h3>
-                      <div className="space-y-3 text-[#d0d4d7]">
+                      <div className="space-y-3 text-[#F0F0F0]">
                         <div className="flex items-center">
-                          <div className="w-2 h-2 bg-[#7d8181] rounded-full mr-3"></div>
+                          <div className="w-2 h-2 bg-[#A9A9A9] rounded-full mr-3"></div>
                           <span><strong>Name:</strong> LORDX679</span>
                         </div>
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 text-[#7d8181] mr-3" />
+                          <Calendar className="h-4 w-4 text-[#A9A9A9] mr-3" />
                           <span><strong>Age:</strong> 18 years old</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="h-4 w-4 text-[#7d8181] mr-3" />
+                          <MapPin className="h-4 w-4 text-[#A9A9A9] mr-3" />
                           <span><strong>Location:</strong> Italy</span>
                         </div>
                         <div className="flex items-center">
-                          <Globe className="h-4 w-4 text-[#7d8181] mr-3" />
+                          <Globe className="h-4 w-4 text-[#A9A9A9] mr-3" />
                           <span><strong>Origin:</strong> Morocco</span>
                         </div>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#a9afb2] mb-4">My Story</h3>
-                      <p className="text-[#d0d4d7] leading-relaxed text-sm">
+                      <h3 className="text-2xl font-bold text-[#D3D3D3] mb-4">My Story</h3>
+                      <p className="text-[#F0F0F0] leading-relaxed text-sm">
                         I'm LORD — an 18-year-old Moroccan developer living in Italy, building digital experiences with precision, depth, and purpose. I don't just write code — I design presence. Every project I build is grounded in vision, driven by a quiet obsession with detail, motion, and feel. My work isn't noise or flash — it's clarity, flow, and control. I draw inspiration from the logic of code, the elegance of minimal design, and the hidden weight of anime stories — I don't aim to impress, I aim to leave a mark. A sharp one. A real one. Technology is my weapon. The web is my battlefield. Whether it's a fluid UI, an animated portfolio, or a system built from the ground up — I move in silence, but my work speaks loud. You won't find everything about me in the code — but read between the lines, and you'll know exactly who I am.
                       </p>
                     </div>
@@ -301,7 +302,7 @@ function App() {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                   <button 
                     onClick={() => setActiveSection('connect')}
-                    className="px-8 py-3 border-2 border-[#7d8181] text-[#a9afb2] font-bold rounded-lg hover:bg-[#7d8181] hover:text-[#151719] transition-all duration-300 shadow-xl"
+                    className="px-8 py-3 border-2 border-[#A9A9A9] text-[#D3D3D3] font-bold rounded-lg hover:bg-[#A9A9A9] hover:text-[#000000] transition-all duration-300 shadow-xl"
                   >
                     Get In Touch
                   </button>
@@ -310,15 +311,15 @@ function App() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {skills.map((skill, index) => (
-                  <div key={index} className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 hover:border-[#7d8181] transition-all duration-300 shadow-2xl group">
+                  <div key={index} className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group">
                     <div className="flex items-center mb-4">
-                      <skill.icon className="h-8 w-8 text-[#7d8181] mr-3 group-hover:text-[#a9afb2] transition-colors" />
-                      <h4 className="text-lg font-bold text-[#a9afb2]">{skill.category}</h4>
+                      <skill.icon className="h-8 w-8 text-[#A9A9A9] mr-3 group-hover:text-[#D3D3D3] transition-colors" />
+                      <h4 className="text-lg font-bold text-[#D3D3D3]">{skill.category}</h4>
                     </div>
                     <div className="space-y-2">
                       {skill.items.map((item, idx) => (
-                        <div key={idx} className="text-[#d0d4d7] text-sm flex items-center">
-                          <div className="w-2 h-2 bg-[#7d8181] rounded-full mr-3"></div>
+                        <div key={idx} className="text-[#F0F0F0] text-sm flex items-center">
+                          <div className="w-2 h-2 bg-[#A9A9A9] rounded-full mr-3"></div>
                           {item}
                         </div>
                       ))}
@@ -336,10 +337,10 @@ function App() {
             <div className="max-w-7xl mx-auto">
               {/* Header */}
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#a9afb2] to-[#d0d4d7] mb-6 drop-shadow-xl">
+                <h2 className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#A9A9A9] to-[#F0F0F0] mb-6 drop-shadow-xl">
                   Let's Connect & Create
                 </h2>
-                <p className="text-xl text-[#7d8181] max-w-3xl mx-auto mb-8">
+                <p className="text-xl text-[#A9A9A9] max-w-3xl mx-auto mb-8">
                   Ready to bring your ideas to life? I'm here to help you build something extraordinary. 
                   Choose your preferred way to reach out and let's start the conversation.
                 </p>
@@ -347,12 +348,12 @@ function App() {
                 {/* Current Time & Status */}
                 <div className="flex items-center justify-center space-x-6 mb-8">
                   <div className="flex items-center space-x-2">
-                    <Clock className="h-5 w-5 text-[#7d8181]" />
-                    <span className="text-[#a9afb2]">Italy Time: {italyTime}</span>
+                    <Clock className="h-5 w-5 text-[#A9A9A9]" />
+                    <span className="text-[#D3D3D3]">Italy Time: {italyTime}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className={`w-3 h-3 rounded-full ${isWorkingHours() ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-                    <span className="text-[#d0d4d7]">
+                    <span className="text-[#F0F0F0]">
                       {isWorkingHours() ? 'Available Now' : 'Outside Working Hours'}
                     </span>
                   </div>
@@ -367,17 +368,17 @@ function App() {
                     href={method.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 hover:border-[#7d8181] transition-all duration-300 shadow-2xl group hover:scale-105 block"
+                    className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 hover:border-[#A9A9A9] transition-all duration-300 shadow-2xl group hover:scale-105 block"
                   >
                     <div className="text-center">
                       <div className={`w-16 h-16 bg-gradient-to-r ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                        <method.icon className="h-8 w-8 text-[#151719]" />
+                        <method.icon className="h-8 w-8 text-[#000000]" />
                       </div>
-                      <h3 className="text-xl font-bold text-[#a9afb2] mb-2">{method.title}</h3>
-                      <p className="text-[#d0d4d7] font-mono text-sm mb-2">{method.value}</p>
-                      <p className="text-[#7d8181] text-xs">{method.description}</p>
+                      <h3 className="text-xl font-bold text-[#D3D3D3] mb-2">{method.title}</h3>
+                      <p className="text-[#F0F0F0] font-mono text-sm mb-2">{method.value}</p>
+                      <p className="text-[#A9A9A9] text-xs">{method.description}</p>
                       <div className="mt-3 flex items-center justify-center">
-                        <ExternalLink className="h-4 w-4 text-[#7d8181] group-hover:text-[#a9afb2] transition-colors" />
+                        <ExternalLink className="h-4 w-4 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
                       </div>
                     </div>
                   </a>
@@ -388,10 +389,10 @@ function App() {
               <div className="max-w-4xl mx-auto">
 
                 {/* Social Media Links */}
-                <div className="bg-gradient-to-br from-[#3f4b48]/50 to-[#151719]/50 border-2 border-[#3f4b48] rounded-lg p-6 shadow-2xl">
+                <div className="bg-gradient-to-br from-[#505050]/50 to-[#000000]/50 border-2 border-[#505050] rounded-lg p-6 shadow-2xl">
                   <div className="flex items-center mb-4">
-                    <Globe className="h-6 w-6 text-[#7d8181] mr-3" />
-                    <h3 className="text-xl font-bold text-[#a9afb2]">Follow My Journey</h3>
+                    <Globe className="h-6 w-6 text-[#A9A9A9] mr-3" />
+                    <h3 className="text-xl font-bold text-[#D3D3D3]">Follow My Journey</h3>
                   </div>
                   <div className="space-y-4">
                     {socialLinks.map((link, index) => (
@@ -400,18 +401,18 @@ function App() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between p-3 bg-[#151719]/50 rounded-lg hover:bg-[#3f4b48]/30 transition-all duration-300 group"
+                        className="flex items-center justify-between p-3 bg-[#000000]/50 rounded-lg hover:bg-[#505050]/30 transition-all duration-300 group"
                       >
                         <div className="flex items-center space-x-3">
-                          <link.icon className="h-5 w-5 text-[#7d8181] group-hover:text-[#a9afb2] transition-colors" />
+                          <link.icon className="h-5 w-5 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
                           <div>
-                            <span className="text-[#d0d4d7] font-medium">{link.name}</span>
-                            <p className="text-[#7d8181] text-xs">{link.description}</p>
+                            <span className="text-[#F0F0F0] font-medium">{link.name}</span>
+                            <p className="text-[#A9A9A9] text-xs">{link.description}</p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-[#a9afb2] text-sm font-bold">{link.followers}</span>
-                          <ExternalLink className="h-4 w-4 text-[#7d8181] group-hover:text-[#a9afb2] transition-colors" />
+                          <span className="text-[#D3D3D3] text-sm font-bold">{link.followers}</span>
+                          <ExternalLink className="h-4 w-4 text-[#A9A9A9] group-hover:text-[#D3D3D3] transition-colors" />
                         </div>
                       </a>
                     ))}
