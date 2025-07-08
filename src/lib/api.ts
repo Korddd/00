@@ -12,7 +12,7 @@ export class ApiService {
 
   async getUserData(discordId: string): Promise<UserData | null> {
     try {
-      const response = await axios.get(`${this.baseUrl}/user-data/${discordId}`);
+      const response = await axios.get(`${this.baseUrl}/user-data`);
       return response.data;
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -22,7 +22,7 @@ export class ApiService {
 
   async refreshUserAvatar(discordId: string): Promise<string | null> {
     try {
-      const response = await axios.post(`${this.baseUrl}/refresh-avatar/${discordId}`);
+      const response = await axios.post(`${this.baseUrl}/refresh-avatar`);
       return response.data.avatarUrl;
     } catch (error) {
       console.error('Error refreshing user avatar:', error);
