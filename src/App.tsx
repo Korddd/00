@@ -279,6 +279,14 @@ function App() {
                           <Calendar className="h-4 w-4 text-[#7d8181] mr-3" />
                           <span><strong>Age:</strong> 18 years old</span>
                         </div>
+                        <div className="flex items-center">
+                          <MapPin className="h-4 w-4 text-[#7d8181] mr-3" />
+                          <span><strong>Location:</strong> Italy</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Globe className="h-4 w-4 text-[#7d8181] mr-3" />
+                          <span><strong>Origin:</strong> Morocco</span>
+                        </div>
                       </div>
                     </div>
                     <div>
